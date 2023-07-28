@@ -1,0 +1,6 @@
+with
+
+P   as(     SELECT      * from prices.usd_latest),
+
+A   as(     select      "to"    as address ,"from"  as bridge, contract_address, 0-cast(value as double)/1e6 as amount   from    evms.erc20_transfers       union all
+            select      "from"  as address ,"to"    as bridge, contract_address,   cast(value as double)/1e6 as amount   from    evms.erc20_transfers ),
